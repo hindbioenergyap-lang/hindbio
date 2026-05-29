@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hindbio Energy — Premium Biomass Pellets & Industrial Burners</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ────────────────────────────────────────────
+   DESIGN TOKENS
+──────────────────────────────────────────── */
+:root {
+  --ink:        #0A1A0F;
+  --ink-80:     #1C3322;
+  --ink-60:     #374B3D;
+  --muted:      #6B7C72;
+  --border:     #E2EBE5;
+  --bg:         #FFFFFF;
+  --bg-alt:     #F6FAF7;
+  --bg-chip:    #EAF4ED;
+  --green-600:  #16A34A;
+  --green-500:  #22C55E;
+  --green-300:  #86EFAC;
+  --green-100:  #DCFCE7;
+  --green-50:   #F0FDF4;
+  --radius-pill:100px;
+  --radius-card:18px;
+  --radius-sm:  10px;
+  --shadow-xs:  0 1px 3px rgba(10,26,15,.07);
+  --shadow-sm:  0 4px 16px rgba(10,26,15,.09);
+  --shadow-md:  0 8px 32px rgba(10,26,15,.12);
+  --shadow-lg:  0 16px 56px rgba(10,26,15,.16);
+  --transition: 220ms cubic-bezier(.4,0,.2,1);
+}
+
+/* ────────────────────────────────────────────
+   RESET & BASE
+──────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:16px;
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit}
+
+/* ────────────────────────────────────────────
+   TYPOGRAPHY
+──────────────────────────────────────────── */
+.t-display{
+  font-size:clamp(2.6rem,5.5vw,4.4rem);
+  font-weight:800;
+  letter-spacing:-0.035em;
+  line-height:1.08;
+}
+.t-h2{
+  font-size:clamp(1.9rem,3.5vw,2.8rem);
+  font-weight:700;
+  letter-spacing:-0.025em;
+  line-height:1.15;
+}
+.t-h3{
+  font-size:1.15rem;
+  font-weight:700;
+  letter-spacing:-0.01em;
+  line-height:1.3;
+}
+.t-lead{
+  font-size:1.1rem;
+  font-weight:400;
+  color:var(--muted);
+  line-height:1.7;
+}
+.t-sm{
+  font-size:.875rem;
+  line-height:1.5;
+}
+.green{color:var(--green-600)}
+
+/* ────────────────────────────────────────────
+   LAYOUT HELPERS
+──────────────────────────────────────────── */
+.wrap{
+  max-width:1160px;
+  margin:0 auto;
+  padding:0 28px;
+}
+.section{padding:100px 0}
+.section-alt{background:var(--bg-alt)}
+
+/* ────────────────────────────────────────────
+   CHIP / TAG
+──────────────────────────────────────────── */
+.chip{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  background:var(--bg-chip);
+  color:var(--green-600);
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  padding:6px 14px;
+  border-radius:var(--radius-pill);
+  border:1px solid rgba(22,163,74,.25);
+  margin-bottom:22px;
+}
+.chip svg{width:13px;height:13px;stroke:var(--green-600)}
+
+/* ────────────────────────────────────────────
+   BUTTONS  — meetcleo exact spec
+──────────────────────────────────────────── */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border-radius:var(--radius-pill);
+  font-size:.95rem;
+  font-weight:700;
+  letter-spacing:-0.005em;
+  padding:14px 26px;
+  cursor:pointer;
+  transition:transform var(--transition), box-shadow var(--transition), background var(--transition);
+  user-select:none;
+  white-space:nowrap;
+}
+.btn svg{width:16px;height:16px;flex-shrink:0;transition:transform var(--transition)}
+
+/* Primary — dark pill */
+.btn-dark{
+  background:var(--ink);
+  color:#fff;
+  box-shadow:0 1px 2px rgba(10,26,15,.18), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.btn-dark:hover{
+  background:var(--ink-80);
+  transform:translateY(-2px);
+  box-shadow:0 8px 28px rgba(10,26,15,.28), 0 2px 6px rgba(10,26,15,.12);
+}
+.btn-dark:hover svg{transform:translateX(2px)}
+.btn-dark:active{transform:translateY(0px);box-shadow:0 1px 3px rgba(10,26,15,.2)}
+
+/* Green pill */
+.btn-green{
+  background:var(--green-600);
+  color:#fff;
+  box-shadow:0 1px 2px rgba(22,163,74,.3);
+}
+.btn-green:hover{
+  background:#15803D;
+  transform:translateY(-2px);
+  box-shadow:0 8px 28px rgba(22,163,74,.35);
+}
+.btn-green:active{transform:translateY(0)}
+
+/* Ghost / outline */
+.btn-ghost{
+  background:transparent;
+  color:var(--ink);
+  border:1.5px solid var(--border);
+  box-shadow:var(--shadow-xs);
+}
+.btn-ghost:hover{
+  background:var(--bg-alt);
+  border-color:rgba(10,26,15,.2);
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-sm);
+}
+.btn-ghost:active{transform:translateY(0)}
+
+/* Sizes */
+.btn-lg{padding:16px 32px;font-size:1rem}
+.btn-sm{padding:10px 20px;font-size:.85rem}
+
+/* ────────────────────────────────────────────
+   NAVIGATION
+──────────────────────────────────────────── */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226,235,229,.8);
+  transition: box-shadow .3s;
+}
+.nav.scrolled{box-shadow:0 4px 24px rgba(10,26,15,.08)}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  width:100%;
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
+  margin-right:auto;
+}
+.nav-logo-mark{
+  width:36px;height:36px;
+  background:var(--ink);
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.nav-logo-mark svg{width:19px;height:19px;stroke:#fff;stroke-width:2;fill:none}
+.nav-logo-name{
+  font-size:.95rem;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.nav-logo-sub{
+  font-size:.68rem;
+  font-weight:500;
+  color:var(--muted);
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  display:block;
+  margin-top:-3px;
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:2px;
+  list-style:none;
+}
+.nav-links a{
+  display:block;
+  padding:8px 14px;
+  font-size:.88rem;
+  font-weight:600;
+  color:var(--ink-60);
+  border-radius:8px;
+  transition:background var(--transition), color var(--transition);
+}
+.nav-links a:hover{background:var(--bg-alt);color:var(--ink)}
+.nav-cta{margin-left:12px}
+
+/* Hamburger */
+.nav-hamburger{
+  display:none;
+  flex-direction:column;gap:5px;
+  padding:8px;margin-left:auto;
+  background:none;border:none;cursor:pointer;
+}
+.nav-hamburger span{
+  display:block;width:22px;height:2px;
+  background:var(--ink);border-radius:2px;
+  transition:.3s;
+}
+.nav-mobile{
+  display:none;
+  position:fixed;
+  top:72px;left:0;right:0;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  padding:16px 20px 20px;
+  box-shadow:var(--shadow-md);
+  z-index:899;
+}
+.nav-mobile.open{display:block}
+.nav-mobile ul{list-style:none;display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+.nav-mobile ul a{display:block;padding:11px 14px;font-weight:600;font-size:.98rem;color:var(--ink);border-radius:10px}
+.nav-mobile ul a:hover{background:var(--bg-alt)}
+
+/* ────────────────────────────────────────────
+   HERO
+──────────────────────────────────────────── */
+.hero{
+  padding:88px 0 80px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  background:url('Section_bg_image.jpg') center / cover no-repeat;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,.82);
+  pointer-events:none;
+  z-index:0;
+}
+.hero-body{
+  position:relative;z-index:1;
+  max-width:840px;margin:0 auto;
+}
+.hero h1 .accent-line{
+  position:relative;
+  display:inline-block;
+}
+.hero h1 .accent-line::after{
+  content:'';
+  position:absolute;
+  left:0;bottom:-5px;
+  width:100%;height:3px;
+  background:linear-gradient(90deg,var(--green-500),var(--green-300));
+  border-radius:2px;
+}
+.hero-desc{
+  max-width:560px;
+  margin:24px auto 0;
+}
+.hero-btns{
+  display:flex;flex-wrap:wrap;
+  gap:12px;
+  justify-content:center;
+  margin-top:36px;
+}
+.hero-stats{
+  display:flex;flex-wrap:wrap;
+  justify-content:center;
+  gap:0;
+  margin-top:56px;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-card);
+  background:#fff;
+  box-shadow:var(--shadow-sm);
+  overflow:hidden;
+}
+.hero-stat{
+  flex:1 1 160px;
+  padding:24px 28px;
+  text-align:center;
+  border-right:1px solid var(--border);
+}
+.hero-stat:last-child{border-right:none}
+.hero-stat-num{
+  font-size:2rem;
+  font-weight:800;
+  letter-spacing:-0.03em;
+  color:var(--ink);
+  line-height:1;
+}
+.hero-stat-label{
+  font-size:.8rem;
+  font-weight:500;
+  color:var(--muted);
+  margin-top:6px;
+}
+
+/* ────────────────────────────────────────────
+   TRUST BAR
+──────────────────────────────────────────── */
+.trust{
+  padding:28px 0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  background:var(--bg-alt);
+}
+.trust-inner{
+  display:flex;align-items:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
+.trust-label{
+  font-size:.8rem;
+  font-weight:600;
+  color:var(--muted);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  flex-shrink:0;
+}
+.trust-divider{
+  width:1px;height:24px;
+  background:var(--border);
+  flex-shrink:0;
+}
+.trust-tags{
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.trust-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius-pill);
+  padding:7px 14px;
+  font-size:.8rem;
+  font-weight:600;
+  color:var(--ink-60);
+  box-shadow:var(--shadow-xs);
+}
+.trust-tag svg{width:14px;height:14px;stroke:var(--green-600);stroke-width:2;fill:none;flex-shrink:0}
+
+/* ────────────────────────────────────────────
+   SECTION HEADER
+──────────────────────────────────────────── */
+.section-header{margin-bottom:52px}
+.section-header .t-lead{max-width:520px;margin-top:12px}
+
+/* ────────────────────────────────────────────
+   PRODUCT CARDS
+──────────────────────────────────────────── */
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-bottom:20px;
+}
+.product-card{
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-card);
+  padding:32px 28px;
+  transition:transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  cursor:default;
+}
+.product-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(22,163,74,.35);
+  box-shadow:var(--shadow-md);
+}
+.product-card.featured{
+  border-color:var(--green-600);
+  background:linear-gradient(160deg,var(--green-50) 0%,#fff 50%);
+  box-shadow:0 0 0 1px var(--green-600), var(--shadow-sm);
+}
+.product-badge{
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--green-600);
+  background:var(--green-100);
+  padding:4px 10px;
+  border-radius:var(--radius-pill);
+  display:inline-block;
+  margin-bottom:18px;
+}
+.product-icon-wrap{
+  width:48px;height:48px;
+  background:var(--bg-chip);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:18px;
+  border:1px solid rgba(22,163,74,.2);
+}
+.product-icon-wrap svg{width:24px;height:24px;stroke:var(--green-600);stroke-width:1.8;fill:none}
+.product-card h3{font-size:1.05rem;font-weight:700;letter-spacing:-0.01em;color:var(--ink);margin-bottom:8px}
+.product-card p{font-size:.9rem;color:var(--muted);line-height:1.6;margin-bottom:18px}
+.product-specs{display:flex;flex-wrap:wrap;gap:7px}
+.spec-tag{
+  font-size:.75rem;font-weight:600;
+  color:var(--ink-60);
+  background:var(--bg-alt);
+  border:1px solid var(--border);
+  padding:4px 10px;
+  border-radius:var(--radius-pill);
+}
+
+/* Burner card wide */
+.burner-card{
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-card);
+  padding:40px 40px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:40px;
+  align-items:center;
+  transition:box-shadow var(--transition), border-color var(--transition);
+}
+.burner-card:hover{
+  border-color:rgba(22,163,74,.3);
+  box-shadow:var(--shadow-md);
+}
+.burner-meta{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:14px;
+}
+.burner-icon-wrap{
+  width:52px;height:52px;
+  background:var(--ink);
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.burner-icon-wrap svg{width:26px;height:26px;stroke:#fff;stroke-width:1.8;fill:none}
+.burner-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:12px;margin-top:20px;
+}
+.burner-feat{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:14px 16px;
+  background:var(--bg-alt);
+  border-radius:var(--radius-sm);
+  border:1px solid var(--border);
+}
+.burner-feat svg{width:18px;height:18px;stroke:var(--green-600);stroke-width:2;fill:none;flex-shrink:0;margin-top:1px}
+.burner-feat-text strong{font-size:.85rem;font-weight:700;color:var(--ink);display:block}
+.burner-feat-text span{font-size:.8rem;color:var(--muted)}
+.burner-visual{
+  width:180px;
+  flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.burner-visual-inner{
+  width:160px;height:160px;
+  background:linear-gradient(135deg,var(--green-50),var(--bg-chip));
+  border-radius:24px;
+  border:1.5px solid rgba(22,163,74,.25);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.burner-visual-inner::after{
+  content:'';
+  position:absolute;
+  bottom:-20px;right:-20px;
+  width:80px;height:80px;
+  background:radial-gradient(circle,rgba(34,197,94,.25),transparent 70%);
+}
+.burner-visual-inner svg{width:64px;height:64px;stroke:var(--green-600);stroke-width:1.5;fill:none;position:relative;z-index:1}
+
+/* ────────────────────────────────────────────
+   WHY SWITCH — 2 COLUMN
+──────────────────────────────────────────── */
+.why-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:64px;
+  align-items:center;
+}
+.why-left .chip{margin-bottom:18px}
+.why-left .t-h2{margin-bottom:16px}
+.why-left .t-lead{margin-bottom:32px}
+.why-features{display:flex;flex-direction:column;gap:14px}
+.why-feat{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:18px 20px;
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:14px;
+  transition:border-color var(--transition), box-shadow var(--transition);
+}
+.why-feat:hover{border-color:rgba(22,163,74,.35);box-shadow:var(--shadow-sm)}
+.why-feat-icon{
+  width:40px;height:40px;
+  background:var(--green-50);
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(22,163,74,.2);
+  flex-shrink:0;
+}
+.why-feat-icon svg{width:20px;height:20px;stroke:var(--green-600);stroke-width:2;fill:none}
+.why-feat-body strong{font-size:.95rem;font-weight:700;color:var(--ink);display:block;margin-bottom:3px;letter-spacing:-.01em}
+.why-feat-body span{font-size:.85rem;color:var(--muted)}
+
+/* Right: comparison panel */
+.compare-panel{
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-card);
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+.compare-header{
+  background:var(--ink);
+  color:#fff;
+  padding:20px 24px;
+  font-size:.85rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.compare-row{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  align-items:center;
+  padding:16px 24px;
+  border-bottom:1px solid var(--border);
+  gap:8px;
+}
+.compare-row:last-child{border-bottom:none}
+.compare-row.head{
+  background:var(--bg-alt);
+  font-size:.78rem;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;
+  color:var(--muted);
+}
+.compare-metric{font-size:.9rem;font-weight:600;color:var(--ink-60)}
+.compare-val{font-size:.95rem;font-weight:700;text-align:center}
+.compare-val.good{color:var(--green-600)}
+.compare-val.bad{color:#DC2626}
+.compare-val.ok{color:#92400E}
+
+/* ────────────────────────────────────────────
+   INDUSTRIES
+──────────────────────────────────────────── */
+.industry-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:14px;
+}
+.industry-card{
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:14px;
+  padding:24px 20px;
+  display:flex;flex-direction:column;align-items:flex-start;gap:14px;
+  transition:transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  cursor:default;
+}
+.industry-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(22,163,74,.3);
+  box-shadow:var(--shadow-sm);
+}
+.industry-icon{
+  width:44px;height:44px;
+  background:var(--bg-chip);
+  border-radius:11px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(22,163,74,.2);
+}
+.industry-icon svg{width:22px;height:22px;stroke:var(--green-600);stroke-width:1.8;fill:none}
+.industry-card p{font-size:.88rem;font-weight:600;color:var(--ink);line-height:1.3}
+.industry-card span{font-size:.78rem;color:var(--muted)}
+
+/* ────────────────────────────────────────────
+   ENQUIRY FORM
+──────────────────────────────────────────── */
+.form-section{
+  background:var(--ink);
+  position:relative;overflow:hidden;
+}
+.form-section::before{
+  content:'';position:absolute;
+  top:-100px;right:-100px;
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(34,197,94,.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.form-section::after{
+  content:'';position:absolute;
+  bottom:-80px;left:-80px;
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(22,163,74,.1) 0%,transparent 70%);
+  pointer-events:none;
+}
+.form-layout{
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:72px;
+  align-items:start;
+  position:relative;z-index:1;
+}
+.form-left .chip{
+  background:rgba(34,197,94,.12);
+  border-color:var(--green-500);
+  color:var(--green-300);
+  transition:background var(--transition), border-color var(--transition), transform var(--transition);
+  text-decoration:none;
+}
+.form-left .chip svg{
+  stroke:var(--green-300);
+}
+.form-left .chip:hover{
+  background:rgba(34,197,94,.22);
+  border-color:var(--green-300);
+  transform:translateY(-1px);
+}
+.form-left .t-h2{color:#fff;margin-bottom:16px}
+.form-left .t-lead{color:rgba(255,255,255,.55);margin-bottom:36px}
+.form-promises{display:flex;flex-direction:column;gap:14px}
+.form-promise{
+  display:flex;align-items:center;gap:12px;
+}
+.form-promise svg{width:18px;height:18px;stroke:var(--green-500);stroke-width:2;fill:none;flex-shrink:0}
+.form-promise span{font-size:.9rem;font-weight:500;color:rgba(255,255,255,.7)}
+
+/* Form card */
+.form-card{
+  background:#fff;
+  border-radius:22px;
+  padding:40px 36px;
+  box-shadow:0 24px 80px rgba(0,0,0,.3);
+}
+.form-card h3{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;color:var(--ink);margin-bottom:6px}
+.form-card .t-sm{color:var(--muted);margin-bottom:28px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.form-group label{font-size:.82rem;font-weight:700;color:var(--ink-60);letter-spacing:.01em}
+.form-control{
+  width:100%;
+  border:1.5px solid var(--border);
+  border-radius:10px;
+  background:#fff;
+  padding:12px 14px;
+  font-size:.93rem;
+  color:var(--ink);
+  outline:none;
+  transition:border-color .2s, box-shadow .2s;
+  appearance:auto;
+}
+.form-control:focus{
+  border-color:var(--green-600);
+  box-shadow:0 0 0 3.5px rgba(22,163,74,.12);
+}
+.form-control::placeholder{color:var(--muted)}
+textarea.form-control{resize:vertical;min-height:88px}
+.form-submit{width:100%;margin-top:4px}
+
+.success-card{
+  display:none;
+  text-align:center;
+  padding:32px;
+  background:var(--green-50);
+  border:1.5px solid var(--green-300);
+  border-radius:16px;
+  margin-top:12px;
+}
+.success-card svg{width:40px;height:40px;stroke:var(--green-600);stroke-width:1.8;fill:none;margin:0 auto 14px}
+.success-card strong{display:block;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:6px}
+.success-card p{font-size:.9rem;color:var(--muted)}
+
+/* ────────────────────────────────────────────
+   FOOTER
+──────────────────────────────────────────── */
+footer{
+  background:var(--ink);
+  border-top:1px solid rgba(255,255,255,.07);
+  padding:48px 0 36px;
+}
+.footer-inner{
+  display:flex;align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:20px;
+}
+.footer-brand{display:flex;align-items:center;gap:10px}
+.footer-brand-mark{
+  width:34px;height:34px;
+  background:rgba(255,255,255,.1);
+  border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+}
+.footer-brand-mark svg{width:17px;height:17px;stroke:#fff;stroke-width:2;fill:none}
+.footer-brand-name{font-size:.92rem;font-weight:700;color:#fff;letter-spacing:-.01em}
+.footer-brand-sub{font-size:.72rem;color:rgba(255,255,255,.4);display:block;margin-top:-2px}
+.footer-copy{font-size:.8rem;color:rgba(255,255,255,.35);text-align:right}
+
+/* ────────────────────────────────────────────
+   SCROLL-TO-TOP
+──────────────────────────────────────────── */
+.scroll-top{
+  position:fixed;bottom:28px;right:28px;
+  width:44px;height:44px;
+  background:var(--ink);
+  color:#fff;border-radius:50%;
+  display:none;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-md);
+  cursor:pointer;
+  z-index:800;
+  transition:transform var(--transition), box-shadow var(--transition);
+}
+.scroll-top.visible{display:flex}
+.scroll-top:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.scroll-top svg{width:18px;height:18px;stroke:#fff;stroke-width:2.5;fill:none}
+
+/* ────────────────────────────────────────────
+   ANIMATIONS
+──────────────────────────────────────────── */
+.fade-up{
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity .65s cubic-bezier(.2,0,.1,1), transform .65s cubic-bezier(.2,0,.1,1);
+}
+.fade-up.in{opacity:1;transform:translateY(0)}
+.delay-1{transition-delay:.08s}
+.delay-2{transition-delay:.16s}
+.delay-3{transition-delay:.24s}
+.delay-4{transition-delay:.32s}
+.delay-5{transition-delay:.40s}
+
+/* ────────────────────────────────────────────
+   OUR STORY
+──────────────────────────────────────────── */
+#story {
+  position: relative;
+  overflow: hidden;
+}
+.story-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 56px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+.story-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--ink-80);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+.story-text p strong {
+  color: var(--ink);
+}
+.story-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.vision-mission-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.vm-card {
+  background: var(--bg-alt);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition), border-color var(--transition);
+}
+.vm-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(22,163,74,.3);
+}
+.vm-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .82rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--green-600);
+  margin-bottom: 10px;
+}
+.vm-card-title svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--green-600);
+  stroke-width: 2.5;
+  fill: none;
+}
+.vm-card p {
+  font-size: .9rem;
+  color: var(--ink-80);
+  line-height: 1.6;
+}
+.atmanirbhar-card {
+  background: linear-gradient(135deg, #FFF9F2 0%, #FFFFFF 100%);
+  border: 1.5px solid #FFEDD5;
+  border-radius: var(--radius-card);
+  padding: 24px;
+  position: relative;
+}
+.atmanirbhar-badge {
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: #C2410C;
+  background: #FFEDD5;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  display: inline-block;
+  margin-bottom: 12px;
+}
+.atmanirbhar-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.atmanirbhar-card p {
+  font-size: .88rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.founders-card {
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius-card);
+  padding: 28px;
+}
+.founders-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.founder-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.founder-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.founder-item:first-of-type {
+  padding-top: 0;
+}
+.founder-info {
+  display: flex;
+  flex-direction: column;
+}
+.founder-name {
+  font-size: .95rem;
+  font-weight: 700;
+}
+.founder-role {
+  font-size: .75rem;
+  color: rgba(255,255,255,.5);
+}
+.founder-call {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,.1);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  font-size: .82rem;
+  font-weight: 700;
+  color: #fff;
+  transition: background var(--transition), transform var(--transition);
+}
+.founder-call:hover {
+  background: var(--green-600);
+  transform: translateY(-2px);
+}
+.founder-call svg {
+  width: 14px;
+  height: 14px;
+  stroke: #fff;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+/* ────────────────────────────────────────────
+   RESPONSIVE
+──────────────────────────────────────────── */
+@media(max-width:960px){
+  .products-grid{grid-template-columns:1fr}
+  .why-layout{grid-template-columns:1fr;gap:48px}
+  .compare-panel{max-width:100%}
+  .form-layout{grid-template-columns:1fr;gap:48px}
+  .burner-card{grid-template-columns:1fr}
+  .burner-visual{display:none}
+  .story-layout{grid-template-columns:1fr;gap:40px}
+}
+@media(max-width:720px){
+  .nav-links,.nav-cta{display:none}
+  .nav-hamburger{display:flex}
+  .hero{padding:64px 0 56px}
+  .section{padding:72px 0}
+  .form-row{grid-template-columns:1fr}
+  .hero-stats{flex-direction:column}
+  .hero-stat{border-right:none;border-bottom:1px solid var(--border);padding:18px}
+  .hero-stat:last-child{border-bottom:none}
+  .burner-grid{grid-template-columns:1fr}
+  .footer-inner{flex-direction:column;align-items:flex-start}
+  .footer-copy{text-align:left}
+  .trust-inner{gap:12px}
+  .trust-divider{display:none}
+}
+@media(max-width:480px){
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn-lg{width:100%;justify-content:center}
+  .industry-grid{grid-template-columns:repeat(2,1fr)}
+  .form-card{padding:28px 20px}
+  .founder-item{flex-direction:column;align-items:flex-start;gap:12px}
+  .founder-call{width:100%;justify-content:center}
+}
+
+/* ────────────────────────────────────────────
+   OUR CLIENTS SECTION
+──────────────────────────────────────────── */
+.clients-section{
+  background:var(--ink);
+  position:relative;overflow:hidden;
+}
+.clients-section::before{
+  content:'';position:absolute;
+  top:-80px;right:-80px;
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(34,197,94,.1) 0%,transparent 70%);
+  pointer-events:none;
+}
+.clients-section .chip{
+  background:rgba(34,197,94,.12);
+  border-color:rgba(34,197,94,.35);
+  color:var(--green-300);
+}
+.clients-section .chip svg{stroke:var(--green-300)}
+.clients-section .t-h2{color:#fff}
+.clients-section .t-lead{color:rgba(255,255,255,.6)}
+.clients-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:48px;
+}
+.client-card{
+  background:rgba(255,255,255,.06);
+  border:1.5px solid rgba(255,255,255,.1);
+  border-radius:var(--radius-card);
+  padding:28px 24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:14px;
+  transition:background var(--transition),border-color var(--transition),transform var(--transition);
+}
+.client-card:hover{
+  background:rgba(255,255,255,.1);
+  border-color:rgba(34,197,94,.4);
+  transform:translateY(-4px);
+}
+.client-icon{
+  width:52px;height:52px;
+  background:rgba(34,197,94,.12);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(34,197,94,.25);
+}
+.client-icon svg{width:26px;height:26px;stroke:var(--green-400);stroke-width:1.8;fill:none}
+.client-name{
+  font-size:1.1rem;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:-.02em;
+}
+.client-desc{
+  font-size:.82rem;
+  color:rgba(255,255,255,.5);
+  line-height:1.5;
+}
+@media(max-width:960px){
+  .clients-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .clients-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="logo.jpg" alt="Hind Bio Energy Logo" style="height:56px;width:auto;object-fit:contain;" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#why">Why Switch</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#clients">Our Clients</a></li>
+    </ul>
+    <a href="#enquiry" class="btn btn-dark btn-sm nav-cta">
+      Get Free Quote
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <ul>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#why">Why Switch</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#clients">Our Clients</a></li>
+  </ul>
+  <a href="#enquiry" class="btn btn-dark" style="width:100%;justify-content:center">
+    Get Free Quote
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-body">
+      <div class="chip fade-up">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        Eco-Friendly Industrial Fuel
+      </div>
+      <h1 class="t-display fade-up delay-1">
+        Cut Fuel Costs by<br/>
+        <span class="green accent-line">40–50%</span> with Clean<br/>
+        Biomass Energy
+      </h1>
+      <p class="t-lead hero-desc fade-up delay-2">
+        Replace expensive Diesel &amp; LPG with our premium 6mm biomass pellets and CFA industrial burners — proven performance across hundreds of Indian industries.
+      </p>
+      <div class="hero-btns fade-up delay-3">
+        <a href="#enquiry" class="btn btn-dark btn-lg">
+          Get Free Consultation
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#products" class="btn btn-ghost btn-lg">
+          View Products
+        </a>
+      </div>
+      <div class="hero-stats fade-up delay-4">
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="50" data-suffix="%">0%</div>
+          <div class="hero-stat-label">Cost Savings vs Diesel / LPG</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="700" data-suffix="°C">0°C</div>
+          <div class="hero-stat-label">Max Burner Temperature</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="3" data-suffix=" grades">0 grades</div>
+          <div class="hero-stat-label">Premium Pellet Options</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="100" data-suffix="%">0%</div>
+          <div class="hero-stat-label">Natural, Additive-Free</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── PRODUCTS ── -->
+<section class="section" id="products">
+  <div class="wrap">
+    <div class="section-header fade-up">
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2z"/><path d="M7 7h.01"/></svg>
+        Our Products
+      </div>
+      <h2 class="t-h2">Premium biomass fuels.<br/>One powerful burner.</h2>
+      <p class="t-lead">Every product is engineered for maximum calorific output, minimum ash, and consistent industrial-grade performance.</p>
+    </div>
+
+    <div class="products-grid">
+      <!-- Biomass Briquettes -->
+      <div class="product-card featured fade-up delay-1">
+        <div class="product-badge">Best Quality</div>
+        <div class="product-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 22a19.2 19.2 0 0 0 2.02-2.1C7.98 17 12 15.5 14 14.5c2-1 2.5-3 2.5-3s-1.5.5-3.5 1c-2 .5-4 .5-4 .5S14 11 17 8z"/><path d="M18.5 3C17.5 5 16 7 14 9c-2 2-5.5 5-8 7.5 1.5-1 3.5-2 5-3 4-3 7-9 7.5-10.5z"/></svg>
+        </div>
+        <h3>Biomass Briquettes</h3>
+        <p>High-density fuel briquettes made from premium compressed agricultural waste. Ideal for industrial boilers, furnaces, and brick kilns, offering stable high temperatures with zero chemical binders.</p>
+        <div class="product-specs">
+          <span class="spec-tag">90mm Diameter</span>
+          <span class="spec-tag">GCV 3800–4100</span>
+          <span class="spec-tag">100% Organic</span>
+          <span class="spec-tag">No Binders</span>
+        </div>
+      </div>
+
+      <!-- Cashew Shell -->
+      <div class="product-card fade-up delay-2">
+        <div class="product-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12 2.1 10.1A10 10 0 0 1 12 2"/><path d="M12 12V2a10 10 0 0 1 9.9 8.1"/></svg>
+        </div>
+        <h3>Sawdust &amp; Cashew Shell Pellets</h3>
+        <p>A premium blend leveraging cashew shell cake to significantly boost calorific value and burner efficiency with low ash output.</p>
+        <div class="product-specs">
+          <span class="spec-tag">6mm (Ash: 2-3%)</span>
+          <span class="spec-tag">8mm (Ash: 2-4%)</span>
+          <span class="spec-tag">High GCV</span>
+          <span class="spec-tag">Cashew Blend</span>
+        </div>
+      </div>
+
+      <!-- Standard -->
+      <div class="product-card fade-up delay-3">
+        <div class="product-icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4M12 16h4M8 11h.01M8 16h.01"/></svg>
+        </div>
+        <h3>Standard Sawdust Pellets</h3>
+        <p>A reliable, cost-effective biofuel option for everyday industrial heating. Consistent performance at the most accessible price point.</p>
+        <div class="product-specs">
+          <span class="spec-tag">6mm (Ash: 2-3%)</span>
+          <span class="spec-tag">8mm (Ash: 2-4%)</span>
+          <span class="spec-tag">Cost-Effective</span>
+          <span class="spec-tag">Wide Availability</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Burner -->
+    <div class="burner-card fade-up">
+      <div>
+        <div class="burner-meta">
+          <div class="burner-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2-2.96 0-7-1-8 0 3.038-1.773 4.741-3 6-1.226 1.26-2 3.24-2 5a6 6 0 0 0 12 0c0-1.532-.77-2.94-1.5-4-.829 1-2.5 1-5 1z"/></svg>
+          </div>
+          <div>
+            <span class="product-badge" style="margin-bottom:0">Industrial Burner</span>
+            <h3 style="font-size:1.2rem;font-weight:800;letter-spacing:-.02em;margin-top:4px">CFA Biomass Burner — Built for Your Setup</h3>
+          </div>
+        </div>
+        <p class="t-lead" style="font-size:.95rem">Continuous Feeding Attachment burners, fully customisable to integrate with any existing industrial equipment. Designed for 24/7 heavy-duty operation across all major industrial verticals.</p>
+        <div class="burner-grid">
+          <div class="burner-feat">
+            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            <div class="burner-feat-text">
+              <strong>Customisable Sizes</strong>
+              <span>18 inch to 52 inch burner bodies</span>
+            </div>
+          </div>
+          <div class="burner-feat">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            <div class="burner-feat-text">
+              <strong>200°C – 700°C</strong>
+              <span>Steady high-temperature output</span>
+            </div>
+          </div>
+          <div class="burner-feat">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <div class="burner-feat-text">
+              <strong>Fully Automatic</strong>
+              <span>Smart control panel with auto feeding</span>
+            </div>
+          </div>
+          <div class="burner-feat">
+            <svg viewBox="0 0 24 24"><path d="M5 12s2.545-5 7-5c4.454 0 7 5 7 5s-2.546 5-7 5c-4.455 0-7-5-7-5z"/><circle cx="12" cy="12" r="3"/></svg>
+            <div class="burner-feat-text">
+              <strong>Precise Temperature</strong>
+              <span>Adjustable air speed &amp; monitoring</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="burner-visual">
+        <div class="burner-visual-inner">
+          <svg viewBox="0 0 24 24"><path d="M12 12c2-2.96 0-7-1-8 0 3.038-1.773 4.741-3 6-1.226 1.26-2 3.24-2 5a6 6 0 0 0 12 0c0-1.532-.77-2.94-1.5-4-.829 1-2.5 1-5 1z"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY SWITCH ── -->
+<section class="section section-alt" id="why">
+  <div class="wrap">
+    <div class="why-layout">
+      <div class="why-left">
+        <div class="chip fade-up">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Why Switch?
+        </div>
+        <h2 class="t-h2 fade-up delay-1">Save more.<br/>Pollute less.<br/>Work better.</h2>
+        <p class="t-lead fade-up delay-2">Industries across India are switching from diesel and LPG. The savings are immediate — the environmental impact, lasting.</p>
+        <div class="why-features">
+          <div class="why-feat fade-up delay-2">
+            <div class="why-feat-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="why-feat-body">
+              <strong>40% – 50% Cost Reduction</strong>
+              <span>Dramatically lower monthly fuel bills vs Diesel or LPG — every single month</span>
+            </div>
+          </div>
+          <div class="why-feat fade-up delay-3">
+            <div class="why-feat-icon">
+              <svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+            </div>
+            <div class="why-feat-body">
+              <strong>Minimal Smoke Output</strong>
+              <span>Premium pellets burn clean — suitable even for units near residential zones</span>
+            </div>
+          </div>
+          <div class="why-feat fade-up delay-4">
+            <div class="why-feat-icon">
+              <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div class="why-feat-body">
+              <strong>Steady High-Temperature Flame</strong>
+              <span>Consistent heat delivery meeting even the most intense industrial demands</span>
+            </div>
+          </div>
+          <div class="why-feat fade-up delay-5">
+            <div class="why-feat-icon">
+              <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div class="why-feat-body">
+              <strong>Easy Conversion</strong>
+              <span>Any unit using 1+ gas cylinder per day can switch with our biofuel conversion kits</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison Panel -->
+      <div class="fade-up delay-2">
+        <div class="compare-panel">
+          <div class="compare-header">Fuel Replacement Comparison</div>
+          <div class="compare-row head">
+            <span>Metric</span>
+            <span style="text-align:center">Biomass</span>
+            <span style="text-align:center">Diesel/LPG</span>
+          </div>
+          <div class="compare-row">
+            <span class="compare-metric">Fuel Cost / Unit</span>
+            <span class="compare-val good">Very Low</span>
+            <span class="compare-val bad">High</span>
+          </div>
+          <div class="compare-row">
+            <span class="compare-metric">Smoke Emission</span>
+            <span class="compare-val good">Minimal</span>
+            <span class="compare-val bad">High</span>
+          </div>
+          <div class="compare-row">
+            <span class="compare-metric">Max Temperature</span>
+            <span class="compare-val good">700°C</span>
+            <span class="compare-val ok">~600°C</span>
+          </div>
+          <div class="compare-row">
+            <span class="compare-metric">Eco-Friendly</span>
+            <span class="compare-val good">Yes</span>
+            <span class="compare-val bad">No</span>
+          </div>
+          <div class="compare-row">
+            <span class="compare-metric">Supply Stability</span>
+            <span class="compare-val good">Consistent</span>
+            <span class="compare-val ok">Variable</span>
+          </div>
+          <div class="compare-row" style="background:var(--green-50);border-top:2px solid var(--green-300)">
+            <span class="compare-metric" style="font-weight:700;color:var(--ink)">Equivalent Rate</span>
+            <span class="compare-val good" style="font-size:1rem">2.5 kg</span>
+            <span class="compare-val" style="color:var(--ink);font-size:1rem">1 L Diesel</span>
+          </div>
+        </div>
+        <p class="t-sm" style="color:var(--muted);margin-top:12px;text-align:center">3 kg biomass pellets = 1 kg LPG &nbsp;·&nbsp; Tested across multiple industrial setups</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OUR STORY ── -->
+<section class="section" id="story">
+  <!-- Indian Flag Background: Saffron/White/Green gradient + Ashoka Chakra watermark at 40% opacity -->
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(255, 153, 51, 0.22) 0%, rgba(255, 255, 255, 0.06) 50%, rgba(18, 136, 37, 0.22) 100%); pointer-events: none; z-index: 0;"></div>
+
+  <svg style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: clamp(280px, 45vw, 520px); height: clamp(280px, 45vw, 520px); opacity: 0.18; stroke: #000080; fill: none; pointer-events: none; z-index: 0;" viewBox="0 0 24 24" aria-hidden="true">
+    <!-- Ashoka Chakra: outer rim, hub, and 24 spokes at 15° intervals -->
+    <circle cx="12" cy="12" r="9" stroke-width="0.6"/>
+    <circle cx="12" cy="12" r="1.2" stroke-width="0.6"/>
+    <path stroke-width="0.35" d="
+      M12,10.5L12,3
+      M12.39,10.55L14.33,3.31
+      M12.75,10.7L16.5,4.21
+      M13.06,10.94L18.36,5.64
+      M13.3,11.25L19.79,7.5
+      M13.45,11.61L20.69,9.67
+      M13.5,12L21,12
+      M13.45,12.39L20.69,14.33
+      M13.3,12.75L19.79,16.5
+      M13.06,13.06L18.36,18.36
+      M12.75,13.3L16.5,19.79
+      M12.39,13.45L14.33,20.69
+      M12,13.5L12,21
+      M11.61,13.45L9.67,20.69
+      M11.25,13.3L7.5,19.79
+      M10.94,13.06L5.64,18.36
+      M10.7,12.75L4.21,16.5
+      M10.55,12.39L3.31,14.33
+      M10.5,12L3,12
+      M10.55,11.61L3.31,9.67
+      M10.7,11.25L4.21,7.5
+      M10.94,10.94L5.64,5.64
+      M11.25,10.7L7.5,4.21
+      M11.61,10.55L9.67,3.31
+    "/>
+  </svg>
+
+  <div class="wrap">
+    <div class="story-layout">
+      
+      <!-- Left Column: The Narrative Story -->
+      <div class="story-text fade-up">
+        <div class="chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+          Our Story
+        </div>
+        <h2 class="t-h2">From Chhattisgarh, Andhra Pradesh to INDIA - Clean Fuel, Indian-made</h2>
+        <p class="t-lead" style="margin-top: 4px; font-weight: 500; color: var(--green-600);">
+          The journey of childhood friends Ramu Aradhyula &amp; Ajindar Singh Bagga.
+        </p>
+        
+        <p style="margin-top: 8px;">
+          What began as a shared dream between two childhood friends has grown into one of Central India's most trusted names in sustainable fuel. In 2011, <strong>Ramu Aradhyula</strong> and <strong>Ajindar Singh Bagga</strong> set up their first biomass briquette manufacturing facility in Raipur, Chhattisgarh — not just to build a business, but to answer a question that had been nagging them for years: <em>why is India burning foreign fuel when its own fields produce enough to power itself?</em>
+        </p>
+        
+        <p>
+          Over a decade and a half of refining processes, building trust with industry leaders, and watching agricultural waste transform into reliable industrial warmth, the answer is now clear. And so is their next step.
+        </p>
+        
+        <p>
+          Today, Ramu and Ajindar are expanding into Bobbili, Andhra Pradesh with a state-of-the-art Biomass Pellet manufacturing plant — bringing the same commitment to quality, sustainability, and Indian self-reliance to the southern industrial corridor.
+        </p>
+      </div>
+
+      <!-- Right Column: Vision, Mission, Atmanirbhar, and Founders Contact -->
+      <div class="story-sidebar fade-up delay-2">
+        
+        <!-- Vision & Mission -->
+        <div class="vision-mission-grid">
+          <div class="vm-card">
+            <div class="vm-card-title">
+              <svg viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              Our Vision
+            </div>
+            <p>To reduce industrial pollution and convert agricultural waste into clean, reliable energy — building a greener India, one pellet at a time.</p>
+          </div>
+          
+          <div class="vm-card">
+            <div class="vm-card-title">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              Our Mission
+            </div>
+            <p>To make Indian industries — especially the hospitality and food sectors — fully self-sufficient in fuel by replacing costly imported gas with high-performance, locally-produced biomass pellets, reducing crores in foreign exchange outflow and strengthening India's energy backbone.</p>
+          </div>
+        </div>
+
+        <!-- Atmanirbhar Callout -->
+        <div class="atmanirbhar-card">
+          <span class="atmanirbhar-badge">Atmanirbhar Bharat</span>
+          <h4>Atmanirbhar Bharat — in every pellet</h4>
+          <p>
+            India spends crores of rupees every year importing gas fuels that its own land can replace. We believe hotels, food processing units, and industrial kitchens should not be dependent on foreign supply chains. Our biomass pellets are made from local agricultural residue, priced competitively, and available reliably — because true self-reliance starts at the factory floor.
+          </p>
+        </div>
+
+        <!-- Founders Direct Line Card -->
+        <div class="founders-card">
+          <h4>Direct Line to Founders</h4>
+          
+          <div class="founder-item">
+            <div class="founder-info">
+              <span class="founder-name">Ramu Aradhyula</span>
+              <span class="founder-role">Co-Founder &amp; Director</span>
+            </div>
+            <a href="tel:+919407720565" class="founder-call" aria-label="Call Ramu Aradhyula">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16z"/></svg>
+              94077 20565
+            </a>
+          </div>
+
+          <div class="founder-item">
+            <div class="founder-info">
+              <span class="founder-name">Ajindar Singh Bagga</span>
+              <span class="founder-role">Co-Founder &amp; Director</span>
+            </div>
+            <a href="tel:+918871890999" class="founder-call" aria-label="Call Ajindar Singh Bagga">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16z"/></svg>
+              88718 90999
+            </a>
+          </div>
+          
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── INDUSTRIES ── -->
+<section class="section section-alt" id="industries">
+  <div class="wrap">
+    <div class="section-header fade-up">
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        Industries We Serve
+      </div>
+      <h2 class="t-h2">Running in hundreds of<br/>facilities across India</h2>
+      <p class="t-lead">Our biomass solutions are actively operating across these sectors.</p>
+    </div>
+    <div class="industry-grid" style="grid-template-columns:repeat(3,1fr);">
+      <!-- Block 1: Namkeen & Chips + Bakery -->
+      <div class="industry-card fade-up delay-1">
+        <div class="industry-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9"/><path d="M12 3v6"/></svg>
+        </div>
+        <p>Namkeen, Chips &amp; Bakery</p>
+        <span>Snack manufacturing, breads, biscuits &amp; pastries</span>
+      </div>
+      <!-- Block 2: Aluminium Melting -->
+      <div class="industry-card fade-up delay-2">
+        <div class="industry-icon">
+          <svg viewBox="0 0 24 24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3z"/></svg>
+        </div>
+        <p>Aluminium Melting</p>
+        <span>High-temp smelting &amp; casting operations</span>
+      </div>
+      <!-- Block 3: Roto Molding -->
+      <div class="industry-card fade-up delay-3">
+        <div class="industry-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <p>Roto Molding</p>
+        <span>Plastic rotational moulding plants</span>
+      </div>
+      <!-- Block 4: Dal Mills + Industrial Roasting -->
+      <div class="industry-card fade-up delay-1">
+        <div class="industry-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 12h6M9 8h6M9 16h4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        </div>
+        <p>Dal Mills &amp; Industrial Roasting</p>
+        <span>Pulse processing, drying, coffee &amp; spice roasting</span>
+      </div>
+      <!-- Block 5: Pharmaceutical -->
+      <div class="industry-card fade-up delay-2">
+        <div class="industry-icon">
+          <svg viewBox="0 0 24 24"><path d="m16 16 2 2 4-4"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 .27"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>
+        </div>
+        <p>Pharmaceutical Industry</p>
+        <span>Process heating for pharma &amp; chemical plants</span>
+      </div>
+      <!-- Block 6: General Manufacturing -->
+      <div class="industry-card fade-up delay-3">
+        <div class="industry-icon">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <p>General Manufacturing</p>
+        <span>Any unit using 1+ gas cylinder per day</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OUR CLIENTS ── -->
+<section class="section clients-section" id="clients">
+  <div class="wrap">
+    <div class="section-header fade-up">
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        Our Clients
+      </div>
+      <h2 class="t-h2">Trusted by India's<br/>Leading Brands</h2>
+      <p class="t-lead">Powering operations for some of India's most iconic companies.</p>
+    </div>
+    <div class="clients-grid">
+      <!-- HUL -->
+      <div class="client-card fade-up delay-1">
+        <span class="client-name">HUL</span>
+        <span class="client-desc">Hindustan Unilever Limited — FMCG &amp; Consumer Goods</span>
+      </div>
+      <!-- Coca-Cola -->
+      <div class="client-card fade-up delay-2">
+        <span class="client-name">Coca-Cola</span>
+        <span class="client-desc">The Coca-Cola Company — Beverages &amp; Manufacturing</span>
+      </div>
+      <!-- ITC -->
+      <div class="client-card fade-up delay-3">
+        <span class="client-name">ITC</span>
+        <span class="client-desc">ITC Limited — Diversified Conglomerate &amp; Food</span>
+      </div>
+      <!-- PepsiCo -->
+      <div class="client-card fade-up delay-1">
+        <span class="client-name">PepsiCo</span>
+        <span class="client-desc">PepsiCo India — Snacks &amp; Beverage Manufacturing</span>
+      </div>
+      <!-- Godrej -->
+      <div class="client-card fade-up delay-2">
+        <span class="client-name">Godrej</span>
+        <span class="client-desc">Godrej Industries — Consumer &amp; Industrial Products</span>
+      </div>
+      <!-- Usha Martin -->
+      <div class="client-card fade-up delay-3">
+        <span class="client-name">Usha Martin</span>
+        <span class="client-desc">Usha Martin Limited — Steel &amp; Wire Rope Manufacturing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ENQUIRY ── -->
+<section class="section form-section" id="enquiry">
+  <div class="wrap">
+    <div class="form-layout">
+      <!-- Left copy -->
+      <div class="form-left">
+        <a href="tel:+919407720565" class="chip fade-up">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16z"/></svg>
+          Free Consultation: +91 94077 20565
+        </a>
+        <h2 class="t-h2 fade-up delay-1">Talk to our<br/>biomass experts</h2>
+        <p class="t-lead fade-up delay-2">Share your current fuel details and we'll send you a personalised cost-saving analysis — completely free.</p>
+        <div class="form-promises fade-up delay-3">
+          <div class="form-promise">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Free fuel cost analysis for your industry</span>
+          </div>
+          <div class="form-promise">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Callback within 24 hours, no spam</span>
+          </div>
+          <div class="form-promise">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Custom pellet grade recommendation</span>
+          </div>
+          <div class="form-promise">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Burner size &amp; integration guidance</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form card -->
+      <div class="fade-up delay-2">
+        <div class="form-card">
+          <h3>Quick Enquiry</h3>
+          <p class="t-sm">Takes less than 60 seconds</p>
+          <form id="enquiryForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input class="form-control" type="text" id="name" placeholder="Ramesh Kumar" required/>
+              </div>
+              <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input class="form-control" type="tel" id="mobile" placeholder="98765 43210" required maxlength="10" pattern="[0-9]{10}"/>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="industry">Industry Type</label>
+                <select class="form-control" id="industry" required>
+                  <option value="" disabled selected>Select industry</option>
+                  <option>Food Processing (Namkeen / Chips)</option>
+                  <option>Bakery</option>
+                  <option>Aluminium Melting</option>
+                  <option>Roto Molding</option>
+                  <option>Dal Mill</option>
+                  <option>Industrial Roasting</option>
+                  <option>General Manufacturing</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="fuel">Current Fuel Used</label>
+                <select class="form-control" id="fuel" required>
+                  <option value="" disabled selected>Select fuel type</option>
+                  <option>Diesel</option>
+                  <option>LPG</option>
+                  <option>Wood / Firewood</option>
+                  <option>Coal</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Message (optional)</label>
+              <textarea class="form-control" id="message" placeholder="Tell us your daily fuel consumption or any questions…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-green btn-lg form-submit">
+              Submit Enquiry — It's Free
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+          <div class="success-card" id="successCard">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            <strong>Enquiry Submitted!</strong>
+            <p>Our team will reach out within 24 hours with your personalised fuel savings analysis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <div style="background:#ffffff;border-radius:10px;padding:6px 10px;display:inline-flex;align-items:center;">
+        <img src="logo.jpg" alt="Hind Bio Energy Logo" style="height:52px;width:auto;display:block;" />
+      </div>
+      <div>
+        <span class="footer-brand-name">Hind Bio Energy</span>
+        <span class="footer-brand-sub">Premium Biomass Solutions</span>
+      </div>
+    </div>
+    <p class="footer-copy">
+      Eco-friendly · Cost-effective · Made for Indian Industries<br/>
+      <span style="opacity:.5">© 2025 Hindbio Energy. All rights reserved.</span>
+    </p>
+  </div>
+</footer>
+
+<!-- Scroll to top -->
+<button class="scroll-top" id="scrollTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- ── SCRIPTS ── -->
+<script>
+// ── Nav scroll effect
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>40);
+  document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400);
+});
+
+// ── Hamburger
+const hamburger=document.getElementById('hamburger');
+const navMobile=document.getElementById('navMobile');
+hamburger.addEventListener('click',()=>navMobile.classList.toggle('open'));
+navMobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navMobile.classList.remove('open')));
+
+// ── Scroll to top
+document.getElementById('scrollTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// ── Intersection Observer: fade-up
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+  });
+},{threshold:0.10,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+
+// ── Counter animation
+function animateCounter(el){
+  const target=parseInt(el.dataset.count,10);
+  const suffix=el.dataset.suffix||'';
+  const duration=1400;
+  const start=performance.now();
+  function step(now){
+    const p=Math.min((now-start)/duration,1);
+    const ease=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+    el.textContent=Math.floor(ease*target)+suffix;
+    if(p<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+const counterIO=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){animateCounter(e.target);counterIO.unobserve(e.target)}
+  });
+},{threshold:0.5});
+document.querySelectorAll('[data-count]').forEach(el=>counterIO.observe(el));
+
+// ── Form submit
+document.getElementById('enquiryForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const form=this;
+  const btn=form.querySelector('button[type="submit"]');
+  const originalBtnHtml=btn.innerHTML;
+
+  // Google Sheets (Apps Script Web App) URL
+  // After you deploy the Apps Script as a Web App, paste the URL below:
+  const SHEETS_WEB_APP_URL='https://script.google.com/macros/s/AKfycbyWvg29-GMkWILglGgEbBskNqvdzlstdiJcRBlKPYlAsEInfqQTtlLPXKcFY-LO1LmB/exec';
+
+  const payload={
+    name:(document.getElementById('name')?.value||'').trim(),
+    mobile:(document.getElementById('mobile')?.value||'').trim(),
+    industry:document.getElementById('industry')?.value||'',
+    fuel:document.getElementById('fuel')?.value||'',
+    message:(document.getElementById('message')?.value||'').trim(),
+    page:location.href,
+    submittedAt:new Date().toISOString()
+  };
+
+  if(!SHEETS_WEB_APP_URL || SHEETS_WEB_APP_URL.includes('PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE')){
+    alert('Form is not connected yet. Please paste your Google Apps Script Web App URL in the code (SHEETS_WEB_APP_URL).');
+    return;
+  }
+
+  btn.disabled=true;
+  btn.style.opacity='.85';
+  btn.innerHTML='Submitting…';
+
+  fetch(SHEETS_WEB_APP_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload),
+    mode:'no-cors'
+  })
+  .then(()=>{
+    form.reset();
+    form.style.display='none';
+    document.getElementById('successCard').style.display='block';
+  })
+  .catch(()=>{
+    alert('Could not submit right now. Please try again.');
+  })
+  .finally(()=>{
+    btn.disabled=false;
+    btn.style.opacity='';
+    btn.innerHTML=originalBtnHtml;
+  });
+});
+</script>
+</body>
+</html>
